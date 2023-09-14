@@ -25,7 +25,7 @@ RUN npm run sbom
 FROM node:18-buster as libxmljs-builder
 WORKDIR /juice-shop
 RUN apt-get update && apt-get install -y build-essential python3
-COPY --from=installer /juice-shop/node_modules ./node_modules
+COPY --from=installer /juice-shop/juice-shop/node_modules ./node_modules
 RUN rm -rf node_modules/libxmljs2/build && \
   cd node_modules/libxmljs2 && \
   npm run build
@@ -47,7 +47,7 @@ LABEL maintainer="Bjoern Kimminich <bjoern.kimminich@owasp.org>" \
     org.opencontainers.image.created=$BUILD_DATE
 WORKDIR /juice-shop
 COPY --from=installer --chown=65532:0 /juice-shop .
-COPY --chown=65532:0 --from=libxmljs-builder /juice-shop//juice-shop/node_modules/libxmljs2 ./node_modules/libxmljs2
+COPY --chown=65532:0 --from=libxmljs-builder /juice-shop/juice-shop/node_modules/libxmljs2 ./node_modules/libxmljs2
 USER 65532
 EXPOSE 3000
-CMD ["/juice-shop/build/app.js"]
+CMD ["/juice-shop/juice-shop/build/app.js"]
