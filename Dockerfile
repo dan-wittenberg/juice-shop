@@ -3,7 +3,7 @@ COPY . /juice-shop
 WORKDIR /juice-shop
 RUN npm install -g npm@10.1.0
 RUN npm i -g typescript ts-node
-RUN npm install --omit=dev --unsafe-perm
+RUN npm install --omit=dev
 RUN npm dedupe
 RUN rm -rf frontend/node_modules
 RUN rm -rf frontend/.angular
