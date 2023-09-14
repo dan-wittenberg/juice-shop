@@ -1,6 +1,6 @@
 FROM node:current-buster as installer
 COPY . /juice-shop
-WORKDIR ./juice-shop
+WORKDIR /harness//juice-shop
 RUN npm install -g npm@10.1.0
 RUN npm i -g typescript ts-node
 RUN npm install --omit=dev
