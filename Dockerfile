@@ -1,4 +1,4 @@
-FROM node:latest as installer
+FROM node:current-buster as installer
 COPY . /juice-shop
 WORKDIR /juice-shop
 RUN npm i -g typescript ts-node
