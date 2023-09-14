@@ -1,7 +1,6 @@
 FROM node:current-buster as installer
 COPY . /juice-shop
 WORKDIR /juice-shop/juice-shop
-RUN find / -name package.json
 RUN npm install -g npm@10.1.0
 RUN npm i -g typescript ts-node
 RUN npm install --omit=dev
@@ -47,7 +46,7 @@ LABEL maintainer="Bjoern Kimminich <bjoern.kimminich@owasp.org>" \
     org.opencontainers.image.created=$BUILD_DATE
 WORKDIR /juice-shop
 COPY --from=installer --chown=65532:0 /juice-shop .
-RUN find / -name libxmljs2
+RUN find / -name sh -type f
 COPY --chown=65532:0 --from=libxmljs-builder /juice-shop/juice-shop/node_modules/libxmljs2 ./node_modules/libxmljs2
 USER 65532
 EXPOSE 3000
