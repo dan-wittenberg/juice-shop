@@ -1,4 +1,4 @@
-FROM node:current-buster as installer
+FROM node:current-bullseye as installer
 COPY . /juice-shop
 WORKDIR /juice-shop/juice-shop
 RUN npm install -g npm@10.1.0
